@@ -20,11 +20,15 @@ final class SolidCounterController extends AbstractContentElementController
 {
     protected function getResponse(FragmentTemplate $template, ContentModel $model, Request $request): Response
     {
-        $template->set('counterValue', (int) $model->counterValue);
-        $template->set('counterSuffix', (string) $model->counterSuffix);
-        $template->set('counterText', (string) $model->counterText);
-        $template->set('counterDuration', (int) ($model->counterDuration ?: 3000));
-        $template->set('counterRepeat', (bool) $model->counterRepeat);
+
+        $GLOBALS['TL_CSS'][] = 'bundles/contaosolidcounter/css/solid-counter.css|static';
+        $GLOBALS['TL_JAVASCRIPT'][] = 'bundles/contaosolidcounter/js/solid-counter.js|static';
+
+        $template->set('counterValue', (int)$model->counterValue);
+        $template->set('counterSuffix', (string)$model->counterSuffix);
+        $template->set('counterText', (string)$model->counterText);
+        $template->set('counterDuration', (int)($model->counterDuration ?: 3000));
+        $template->set('counterRepeat', (bool)$model->counterRepeat);
 
         return $template->getResponse();
     }
