@@ -1,0 +1,36 @@
+{#
+  BEM:
+  - solid-counter
+  - solid-counter__value
+  - solid-counter__number
+  - solid-counter__suffix
+  - solid-counter__text
+#}
+
+{% set jsUrl = asset('bundles/contaosolidcounter/counter.js') %}
+
+<div class="solid-counter"
+     data-solid-counter
+     data-value="{{ counterValue|default(0) }}"
+     data-duration="{{ counterDuration|default(3000) }}"
+     data-repeat="{{ counterRepeat ? '1' : '0' }}">
+  <div class="solid-counter__value">
+    <span class="solid-counter__number">0</span>
+    {% if counterSuffix %}<span class="solid-counter__suffix">{{ counterSuffix }}</span>{% endif %}
+  </div>
+
+  {% if counterText %}
+    <div class="solid-counter__text">{{ counterText }}</div>
+  {% endif %}
+</div>
+
+<script>
+  window.__solidCounter = window.__solidCounter || { loaded: false, url: {{ jsUrl|json_encode|raw }} };
+  if (!window.__solidCounter.loaded) {
+    window.__solidCounter.loaded = true;
+    const s = document.createElement('script');
+    s.src = window.__solidCounter.url;
+    s.defer = true;
+    document.head.appendChild(s);
+  }
+</script>
