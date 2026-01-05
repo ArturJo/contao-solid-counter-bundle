@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Solidwork\ContaoSolidCounterBundle\ContaoManager;
 
-use Contao\ManagerPlugin\Bundle\BundleConfig;
+use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Parser\ParserInterface;
 use Contao\ManagerPlugin\Dependency\DependentPluginInterface;
